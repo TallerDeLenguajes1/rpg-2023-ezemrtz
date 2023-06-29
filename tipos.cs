@@ -1,6 +1,10 @@
 namespace EspacioPersonaje;
 
 public enum tipos{
-    hola,
-    chau
+    Mago,
+    Tanque,
+    Luchador,
+    Ninja
 }
+
+
