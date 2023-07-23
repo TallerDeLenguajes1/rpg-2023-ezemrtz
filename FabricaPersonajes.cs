@@ -13,7 +13,7 @@ public class FabricaPersonajes{
         personaje.FechaNacimiento= new DateTime(rd.Next(1723,2024), rd.Next(1,13), rd.Next(1,32));
         personaje.Edad = DateTime.Today.AddTicks(-personaje.FechaNacimiento.Ticks).Year-1;
         personaje.Velocidad = rd.Next(1,10);
-        personaje.Destreza = rd.Next(1,10);
+        personaje.Destreza = rd.Next(1,5);
         personaje.Fuerza = rd.Next(1,10);
         personaje.Nivel = rd.Next(1,10);
         personaje.Armadura = rd.Next(1,10);
