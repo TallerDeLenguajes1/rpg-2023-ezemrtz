@@ -26,19 +26,19 @@ public class Personaje{
     public double Salud { get => salud; set => salud = value; }
 
     public void MostrarInfo(){
-        Console.WriteLine("=================================");
-        Console.WriteLine("Tipo: {0}", this.tipo);
-        Console.WriteLine("Nombre: {0}", this.nombre);
-        Console.WriteLine("Apodo: {0}", this.apodo);
-        //Console.WriteLine("Fecha Nacimiento: {0}", this.fechaNacimiento.ToShortDateString());
-        Console.WriteLine("Edad: {0}", this.edad);
-        Console.WriteLine("----------------");
-        Console.WriteLine("Nivel: {0}", this.nivel);
-        Console.WriteLine("Velocidad: {0}", this.velocidad);
-        Console.WriteLine("Destreza: {0}", this.destreza);
-        Console.WriteLine("Armadura: {0}", this.armadura);
-        Console.WriteLine("Salud: {0}", this.salud);
-        Console.WriteLine("=================================");
+        Console.WriteLine("╔════════════════════════╗");
+        Console.WriteLine("    Tipo: {0}", this.tipo);
+        Console.WriteLine("    Nombre: {0}", this.nombre);
+        Console.WriteLine("    Apodo: {0}", this.apodo);
+        Console.WriteLine("    Edad: {0}", this.edad);
+        Console.WriteLine("    ----------------");
+        Console.WriteLine("    Nivel: {0}", this.nivel);
+        Console.WriteLine("    Velocidad: {0}", this.velocidad);
+        Console.WriteLine("    Destreza: {0}", this.destreza);
+        Console.WriteLine("    Fuerza: {0}", this.fuerza);
+        Console.WriteLine("    Armadura: {0}", this.armadura);
+        Console.WriteLine("    Salud: {0}", this.salud);
+        Console.WriteLine("╚════════════════════════╝");
     }
 
     public double Atacar(Personaje Defensor){
@@ -47,17 +47,36 @@ public class Personaje{
         double Ataque = destreza*fuerza*nivel;
         double Efectividad = rd.Next(1,101);
         double Defensa = Defensor.Armadura*Defensor.Velocidad;
-        DañoProvocado = (Ataque*Efectividad - Defensa)/500;
+        if(Ataque*Efectividad < Defensa){
+            DañoProvocado = 0;
+        }else{
+            DañoProvocado = (Ataque*Efectividad - Defensa)/500;
+        }
         return DañoProvocado;
     }
 
     public void SubirNivel(){
+        Console.WriteLine("¡{0} '{1}' ha subido de nivel!", this.nombre, this.apodo);
+        Random rd = new Random();
         this.nivel++;
-        this.velocidad++;
-        this.destreza++;
-        this.fuerza++;
-        this.armadura++;
         this.salud = 100;
+        for (int i = 0; i < 3; i++)
+        {
+            switch(rd.Next(1,5)){
+                case 1:
+                    this.velocidad++;
+                    break;
+                case 2:
+                    this.destreza++;
+                    break;
+                case 3: 
+                    this.fuerza++;
+                    break;
+                case 4:
+                    this.armadura++;
+                    break;
+            }
+        }
     }
 }
 
