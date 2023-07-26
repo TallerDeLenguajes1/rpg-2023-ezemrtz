@@ -12,18 +12,22 @@ Mensajes Msj = new Mensajes();
 string NombreArchivoPersonajes = "personajes.json";
 List<Personaje> ListaPersonajes;
 
+List<string> ListaNombres = HelperAPI.ObtenerNombres(); // CREO LISTA DE NOMBRES UTILIZANDO LA API
+
+//CONTROLO Y CREO EL ARCHIVO JSON CON LOS PERSONAJES SI NO EXISTE
 if (HelperPersonajesJson.Existe(NombreArchivoPersonajes)){
     ListaPersonajes = HelperPersonajesJson.LeerPersonajes(NombreArchivoPersonajes);
 }else{
     ListaPersonajes = new List<Personaje>();
     for (int i = 0; i < 10; i++)
     {
-        Personaje personaje = Fabrica.CrearPersonaje();
+        Personaje personaje = Fabrica.CrearPersonaje(ListaNombres);
         ListaPersonajes.Add(personaje);
     }
     HelperPersonajesJson.GuardarPersonajes(ListaPersonajes);
-}
+} 
 
+//EMPIEZA EL MINIJUEGO
 Msj.Portada();
 HelperGameplay.Avanzar();
 
@@ -33,9 +37,9 @@ HelperGameplay.Avanzar();
 Console.Clear();
 
 Personaje Personaje1, Personaje2, Ganador=null;
-
 (Personaje1, Personaje2) = HelperGameplay.DefinirPeleadores(ListaPersonajes);
-while(ListaPersonajes.Count > 1)
+
+while(ListaPersonajes.Count > 1) // COMIENZAN LAS PELEAS
 {
     Console.Clear();
     Msj.Encuentro(Personaje1, Personaje2);
@@ -70,17 +74,20 @@ while(ListaPersonajes.Count > 1)
 
     Ganador = HelperGameplay.DefinirGanador(ListaPersonajes, Personaje1, Personaje2);
 
+    // CONTROLO SI QUEDA UN UNICO PELEADOR PARA TERMINAR EL JUEGO
     if(ListaPersonajes.Count > 1){
         (Personaje1, Personaje2) = HelperGameplay.DefinirPeleadores(ListaPersonajes);
     }
 
-    string insulto = HelperAPI.ObtenerInsulto();
-    Msj.InsutoPerdedor(insulto);
+    
     Msj.GanadorPelea(Ganador);
     Ganador.SubirNivel();
     Thread.Sleep(2000);
     HelperGameplay.Avanzar();
 }
 
+// MUESTRO AL CAMPEON
 Console.Clear();
 Msj.CampeonMinijuego(Ganador);
+
+// FIN DEL MINIJUEGO
