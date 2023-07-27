@@ -39,27 +39,15 @@ public class ConsultaAPI{
         }
         return ListaNombres;
     }
-
-    public List<string> ProcesarNombres(List<Datum> ListaSinProcesar){
-        List<string> Nombres = new List<string>();
-        foreach (var item in ListaSinProcesar)
-        {
-            string nombreCompleto = item.owner;
-            string nombre = nombreCompleto.Split(" ")[0];
-            Nombres.Add(nombre);
-        }
-        return Nombres;
-    }
-    
 }
 
-    public class Datum
-    {
-        [JsonPropertyName("owner")]
-        public string owner { get; set; }
-    }
+public class Datum
+{
+    [JsonPropertyName("owner")]
+    public string owner { get; set; }
+}
 
-    public class Names
-    {
-        public List<Datum> data { get; set; }
-    }
+public class Names
+{
+    public List<Datum> data { get; set; }
+}

@@ -1,7 +1,7 @@
 namespace EspacioPersonaje;
 
 public class FabricaPersonajes{
-    private static string[] apodos = {"The Killer", "El golpeador", "El saltarin", "El payaso", "El molesto", "Fortachon", "Velocista", "Escurridizo"};
+    private static string[] apodos = {"The Killer", "Golpeador", "Saltarin", "Payaso", "Molesto", "Fortachon", "Velocista", "Escurridizo"};
     public Personaje CrearPersonaje(List<string> ListaNombres){
         var rd = new Random();
         ConsultaAPI HelperAPI = new ConsultaAPI();
@@ -16,20 +16,20 @@ public class FabricaPersonajes{
         personaje.Edad = DateTime.Today.AddTicks(-personaje.FechaNacimiento.Ticks).Year-1;
         personaje.Velocidad = rd.Next(1,11);
         personaje.Destreza = rd.Next(1,6);
-        personaje.Fuerza = rd.Next(3,11);
+        personaje.Fuerza = rd.Next(1,11);
         personaje.Armadura = rd.Next(1,11);
         switch(personaje.Tipo){
             case tipos.Luchador: 
-                personaje.Fuerza += 3;
+                personaje.Fuerza += 2;
             break;
             case tipos.Ninja:
-                personaje.Destreza += 3;
+                personaje.Destreza += 2;
             break;
             case tipos.Tanque:
-                personaje.Armadura += 3;
+                personaje.Armadura += 2;
             break;
             case tipos.Mago:
-                personaje.Velocidad += 3;
+                personaje.Velocidad += 2;
             break;
             default: break;
         }
