@@ -41,7 +41,7 @@ public class Gameplay{
     public void MostrarListaPersonajes(List<Personaje> ListaPersonajes){
         Console.WriteLine("-------------- Los prisioneros que participaran son los siguientes --------------");
         Thread.Sleep(1000);
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < ListaPersonajes.Count; i++)
         {
             ListaPersonajes[i].MostrarInfo();
             Thread.Sleep(100);

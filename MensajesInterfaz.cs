@@ -54,17 +54,6 @@ public class Mensajes{
         Console.WriteLine("╚═════════════════════════════════════╝");
     }
 
-    public void InsutoPerdedor(string insulto){
-        string frase = "Se escucha al perdedor decir unas ultimas palabras: - ¡" + insulto + "!";
-        foreach (var item in frase)
-        {
-            Console.Write(item);
-            Thread.Sleep(10);
-        }
-        Console.WriteLine();
-        Thread.Sleep(150);
-    }
-
     public void CampeonMinijuego(Personaje campeon){
         Console.WriteLine("╔════════════════════ GRAN CAMPEON ═════════════════════╗");
         Console.WriteLine("\n     ¡{0} '{1}' es el ultimo peleador en pie!", campeon.Nombre, campeon.Apodo);
