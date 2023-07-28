@@ -52,11 +52,11 @@ while(ListaPersonajes.Count > 1) // COMIENZAN LAS PELEAS
         Msj.MostrarSalud(Personaje1);
         Msj.MostrarSalud(Personaje2);
         Console.WriteLine();
-        Thread.Sleep(450);
+        Thread.Sleep(350);
 
         Console.WriteLine(" ======= Turno: Peleador 1 =======");
         HelperGameplay.Ataque(Personaje1, Personaje2);
-        Thread.Sleep(200);
+        Thread.Sleep(100);
         
         if(Personaje2.Salud <= 0)
         {
@@ -66,7 +66,7 @@ while(ListaPersonajes.Count > 1) // COMIENZAN LAS PELEAS
 
         Console.WriteLine("\n ======= Turno: Peleador 2 =======");
         HelperGameplay.Ataque(Personaje2, Personaje1);    
-        Thread.Sleep(200);
+        Thread.Sleep(100);
 
         Console.WriteLine("\n═════════════════════════════════\n");
         Thread.Sleep(200);
